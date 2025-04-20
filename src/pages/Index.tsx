@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { ArrowRight, Code, Layout, Shield } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Index = () => {
   // References for animation elements
@@ -57,13 +62,28 @@ const Index = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="group">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-                <Button variant="outline" size="lg">
-                  Learn More
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button size="lg" className="group">
+                      Get Started
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Begin your journey with NOVA</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="lg">
+                      Learn More
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Discover our features and capabilities</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
             </div>
             
@@ -98,35 +118,44 @@ const Index = () => {
                 description: "Create beautiful, responsive interfaces with our cutting-edge design system.",
                 icon: <Layout className="h-10 w-10 text-primary" />,
                 delay: 0,
+                tooltip: "Craft stunning user interfaces with modern design principles"
               },
               {
                 title: "Powerful Development",
                 description: "Build robust applications with our advanced development tools and frameworks.",
                 icon: <Code className="h-10 w-10 text-primary" />,
                 delay: 100,
+                tooltip: "Leverage powerful development tools and frameworks"
               },
               {
                 title: "Enterprise Security",
                 description: "Ensure your data and users are protected with our comprehensive security solutions.",
                 icon: <Shield className="h-10 w-10 text-primary" />,
                 delay: 200,
+                tooltip: "Protect your applications with enterprise-grade security"
               },
             ].map((feature, index) => (
-              <Card 
-                key={index}
-                className="feature-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:shadow-lg border border-border/50 bg-card/50 backdrop-blur-sm"
-                style={{ transitionDelay: `${feature.delay}ms` }}
-              >
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="rounded-full p-4 bg-primary/10 mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <Tooltip key={index}>
+                <TooltipTrigger asChild>
+                  <Card 
+                    className="feature-card opacity-0 translate-y-8 transition-all duration-700 ease-out hover:shadow-lg border border-border/50 bg-card/50 backdrop-blur-sm"
+                    style={{ transitionDelay: `${feature.delay}ms` }}
+                  >
+                    <CardContent className="p-6 flex flex-col items-center text-center">
+                      <div className="rounded-full p-4 bg-primary/10 mb-4">
+                        {feature.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{feature.tooltip}</p>
+                </TooltipContent>
+              </Tooltip>
             ))}
           </div>
         </section>
@@ -143,9 +172,16 @@ const Index = () => {
                 <p className="text-lg text-muted-foreground">
                   Join thousands of companies already using our platform to build amazing web experiences.
                 </p>
-                <Button size="lg" className="mt-4">
-                  Contact Us
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button size="lg" className="mt-4">
+                      Contact Us
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Get in touch with our team to start your project</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
             </div>
           </div>

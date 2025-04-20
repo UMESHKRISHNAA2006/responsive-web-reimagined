@@ -3,6 +3,12 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,71 +20,124 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
-            <span className="text-xl font-bold text-foreground transition-colors hover:text-primary">NOVA</span>
+            <Tooltip>
+              <TooltipTrigger>
+                <span className="text-xl font-bold text-foreground transition-colors hover:text-primary">NOVA</span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Welcome to NOVA - Building the Future of Web</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center justify-center space-x-1">
-            <div className="relative group">
-              <a 
-                href="#" 
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
-              >
-                Home
-              </a>
-            </div>
-            <div className="relative group">
-              <a 
-                href="#" 
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
-              >
-                About
-              </a>
-            </div>
-            <div className="relative group">
-              <a 
-                href="#" 
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
-              >
-                Services
-              </a>
-            </div>
-            <div className="relative group">
-              <a 
-                href="#" 
-                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
-              >
-                Contact
-              </a>
-            </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={toggleTheme} 
-              className="ml-4"
-            >
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="#" 
+                  className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
+                >
+                  Home
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Return to the main page</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="#" 
+                  className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
+                >
+                  About
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Learn more about our company and mission</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="#" 
+                  className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
+                >
+                  Services
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Explore our professional web development services</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="#" 
+                  className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:origin-right after:transition-transform hover:after:scale-x-100 hover:after:origin-left"
+                >
+                  Contact
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Get in touch with our team</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={toggleTheme} 
+                  className="ml-4"
+                >
+                  {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle {theme === 'dark' ? 'light' : 'dark'} mode</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="text-foreground"
-            >
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center"
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleTheme}
+                  className="text-foreground"
+                >
+                  {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle {theme === 'dark' ? 'light' : 'dark'} mode</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="inline-flex items-center justify-center"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle navigation menu</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>
